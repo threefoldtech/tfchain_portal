@@ -52,7 +52,6 @@
           </v-list-item>
 
           <v-list-item v-if="twinID !== 0" link @click="selectedItem = 'dnodes'">
-
             <v-list-item-icon>
               <v-icon>mdi-resistor-nodes</v-icon>
             </v-list-item-icon>
@@ -60,7 +59,16 @@
             <v-list-item-content>
               <v-list-item-title>Dedicated Nodes</v-list-item-title>
             </v-list-item-content>
+          </v-list-item>
 
+          <v-list-item v-if="twinID !== 0" link @click="selectedItem = 'dao'">
+            <v-list-item-icon>
+              <v-icon>mdi-account-group</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>DAO</v-list-item-title>
+            </v-list-item-content>
           </v-list-item>
 
           <v-list-item link @click="openExplorer">
@@ -94,6 +102,9 @@
           :balance="balance"
           :getBalance="getBalance"
         />
+        <Dao
+          v-if="selectedItem === 'dao' && activated" 
+        />
         <TermsAndConditions
           :open="!activated"
           :accept="acceptTermsAndConditions"
@@ -120,6 +131,7 @@ import Twin from '../components/twin.vue'
 import Transfer from '../components/transfer.vue'
 import DedicatedNodes from '../components/dedicatednodes/nodes.vue'
 import TermsAndConditions from './TermsAndConditions.vue'
+import Dao from '../components/dao.vue'
 import { activateThroughActivationService, acceptTermsAndCondition, userAcceptedTermsAndConditions } from '../lib/activation' 
 import { getBalance } from '../lib/balance'
 import { getTwin, getTwinID, createTwin } from '../lib/twin'
@@ -138,6 +150,7 @@ export default {
     TermsAndConditions,
     Transfer,
     DedicatedNodes,
+    Dao,
   },
   
   data () {
