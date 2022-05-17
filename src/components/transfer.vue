@@ -36,7 +36,7 @@
           text
           @click="transferFrom()"
           :loading="loadingTransfer"
-          :disabled="!!errorMessages || amount === 0 || target === ''"
+          :disabled="!!errorMessages || amount === '' || target === ''"
         >
           Transfer
         </v-btn>
@@ -51,7 +51,7 @@ export default {
   data () {
     return {
       target: '',
-      amount: 0,
+      amount: '',
       loadingTransfer: false,
       errorMessages: '',
     }
@@ -69,7 +69,7 @@ export default {
       }
     },
     transferFrom () {
-      if (this.amount === 0 || this.target === '') {
+      if (this.amount === '' || this.target === '') {
         this.errorMessages = 'No target specified'
         return
       }
